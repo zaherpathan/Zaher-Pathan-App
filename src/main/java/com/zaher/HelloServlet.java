@@ -127,7 +127,7 @@ public class HelloServlet extends HttpServlet {
             <body>
                 <div class="card">
                     <img src="https://avatars.githubusercontent.com/u/99774885?v=4" alt="Zaher Pathan">
-                    <h1><span>Hello from Zaher Pathan App!</span></h1>
+                    <h1><span>Hello from Zaher Pathan</span></h1>
                     <p class="mt-3">Rendered beautifully by a Java Servlet using Java 17 🚀</p>
                     <div class="social-buttons">
                         <a href="https://github.com/zaherpathan" class="btn-github"><i class="fab fa-github"></i> GitHub</a>
