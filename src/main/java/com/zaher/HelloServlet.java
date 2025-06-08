@@ -40,7 +40,7 @@ public class HelloServlet extends HttpServlet {
                 </style>
             </head>
             <body>
-                <h1>Hello from Zaher’s Beautiful App!</h1>
+                <h1>Hello from Zaher Pathan App!</h1>
                 <p>This page is rendered by a Java Servlet using Java 17!</p>
             </body>
             </html>
