@@ -85,7 +85,7 @@ public class HelloServlet extends HttpServlet {
             <body>
                 <div class="card">
                     <h1>Hello from Zaher Pathan App!</h1>
-                    <p>This stylish page is rendered using a Java Servlet on Java 17.</p>
+                    <p> </p>
                     <a href="https://github.com/zaherpathan" target="_blank" class="btn btn-light">GitHub Projects</a>
                     <a href="https://www.linkedin.com/in/zaher-pathan-697150242" target="_blank" class="btn btn-outline-light">LinkedIn Profile</a>
                 </div>
