@@ -24,20 +24,27 @@ public class HelloServlet extends HttpServlet {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
                 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+                <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
                 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
                 <style>
-                    body {
+                    body, html {
                         margin: 0;
+                        padding: 0;
+                        height: 100%;
                         font-family: 'Segoe UI', sans-serif;
                         overflow: hidden;
-                        height: 100vh;
-                        background: linear-gradient(-45deg, #141e30, #243b55, #2c3e50, #4b6cb7);
+                        color: #fff;
+                    }
+
+                    #particles-js {
+                        position: fixed;
+                        width: 100%;
+                        height: 100%;
+                        background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
                         background-size: 400% 400%;
-                        animation: gradientBG 12s ease infinite;
-                        color: white;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
+                        animation: gradientBG 15s ease infinite;
+                        z-index: -1;
                     }
 
                     @keyframes gradientBG {
@@ -46,118 +53,159 @@ public class HelloServlet extends HttpServlet {
                         100% { background-position: 0% 50%; }
                     }
 
-                    canvas#particles-js {
-                        position: fixed;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        z-index: -1;
-                    }
-
                     .card {
-                        background: rgba(255, 255, 255, 0.05);
-                        backdrop-filter: blur(15px);
+                        background: rgba(255, 255, 255, 0.07);
+                        border: 1px solid rgba(255,255,255,0.2);
                         padding: 3rem;
                         border-radius: 1.5rem;
-                        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+                        box-shadow: 0 0 30px rgba(0,0,0,0.3);
+                        backdrop-filter: blur(15px);
                         text-align: center;
                         max-width: 600px;
                         width: 90%;
-                        animation: fadeIn 1.2s ease-in-out;
-                        border: 1px solid rgba(255,255,255,0.2);
+                        margin: auto;
+                        position: relative;
+                        z-index: 2;
                     }
 
                     .card img {
                         width: 120px;
                         height: 120px;
                         border-radius: 50%;
-                        object-fit: cover;
-                        border: 3px solid white;
-                        margin-bottom: 20px;
-                        box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+                        border: 3px solid #fff;
+                        margin-bottom: 1rem;
+                        box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
                     }
 
-                    h1 {
+                    h1 span {
                         font-size: 2.5rem;
                         font-weight: bold;
-                        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-                        animation: glow 2s ease-in-out infinite alternate;
-                    }
-
-                    @keyframes glow {
-                        from {
-                            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-                        }
-                        to {
-                            text-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
-                        }
+                        text-shadow: 0 0 15px cyan;
                     }
 
                     p {
                         font-size: 1.2rem;
-                        margin-top: 10px;
-                        opacity: 0.9;
+                        margin-top: 1rem;
+                        opacity: 0.85;
                     }
 
                     .social-buttons a {
-                        margin: 0.7rem;
-                        padding: 0.7rem 1.4rem;
-                        border-radius: 25px;
+                        margin: 0.6rem;
+                        padding: 0.7rem 1.5rem;
+                        border-radius: 30px;
                         font-size: 1rem;
-                        transition: all 0.3s ease;
                         display: inline-block;
                         text-decoration: none;
+                        transition: all 0.3s ease;
                     }
 
                     .btn-github {
                         background: #fff;
-                        color: #24292e;
+                        color: #000;
                     }
 
                     .btn-github:hover {
-                        background: #24292e;
+                        background: #000;
                         color: #fff;
                     }
 
                     .btn-linkedin {
                         background: #0e76a8;
-                        color: #fff;
+                        color: white;
                     }
 
                     .btn-linkedin:hover {
                         background: #094e72;
-                        color: #fff;
                     }
 
-                    @keyframes fadeIn {
-                        from { opacity: 0; transform: translateY(20px); }
-                        to { opacity: 1; transform: translateY(0); }
+                    @media (max-width: 600px) {
+                        .card {
+                            padding: 2rem;
+                        }
+                        h1 span {
+                            font-size: 1.8rem;
+                        }
                     }
                 </style>
             </head>
             <body onload="launchConfetti()">
-                <div class="card">
+
+                <div id="particles-js"></div>
+
+                <div class="card mt-5">
                     <img src="https://avatars.githubusercontent.com/u/99774885?v=4" alt="Zaher Pathan">
-                    <h1>Hello from Zaher Pathan App!</h1>
+                    <h1><span id="typed-text"></span></h1>
                     <p> </p>
-                    <div class="social-buttons">
+                    <div class="social-buttons mt-3">
                         <a href="https://github.com/zaherpathan" class="btn-github"><i class="fab fa-github"></i> GitHub</a>
                         <a href="https://www.linkedin.com/in/zaher-pathan-697150242" class="btn-linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
                     </div>
                 </div>
 
                 <script>
+                    new Typed('#typed-text', {
+                        strings: [
+                            "Hello, I'm Zaher Pathan 👋",
+                            "Java Developer • DevOps Engineer",
+                            "Welcome to My Beautiful App!"
+                        ],
+                        typeSpeed: 60,
+                        backSpeed: 30,
+                        loop: true
+                    });
+
                     function launchConfetti() {
                         confetti({
-                            particleCount: 150,
+                            particleCount: 120,
                             spread: 100,
                             origin: { y: 0.6 }
                         });
                     }
+
+                    particlesJS('particles-js',
+                    {
+                        "particles": {
+                            "number": {
+                                "value": 60
+                            },
+                            "color": {
+                                "value": "#ffffff"
+                            },
+                            "shape": {
+                                "type": "circle"
+                            },
+                            "opacity": {
+                                "value": 0.5
+                            },
+                            "size": {
+                                "value": 3
+                            },
+                            "line_linked": {
+                                "enable": true,
+                                "distance": 150,
+                                "color": "#ffffff",
+                                "opacity": 0.4,
+                                "width": 1
+                            },
+                            "move": {
+                                "enable": true,
+                                "speed": 3
+                            }
+                        },
+                        "interactivity": {
+                            "events": {
+                                "onhover": {
+                                    "enable": true,
+                                    "mode": "repulse"
+                                }
+                            }
+                        },
+                        "retina_detect": true
+                    });
                 </script>
             </body>
             </html>
         """);
     }
 }
+
