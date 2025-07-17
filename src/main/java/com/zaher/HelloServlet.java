@@ -147,7 +147,7 @@ public class HelloServlet extends HttpServlet {
                         strings: [
                             "Hello, I'm Zaher Pathan 👋",
                             "DevOps Engineer",
-                            "Welcome to My App!"
+                            "Welcome to My App! How are You"
                         ],
                         typeSpeed: 60,
                         backSpeed: 30,
